@@ -1,0 +1,12 @@
+<tr class="<?= $this->strClass; ?>">
+	<td class="platz"><?= $this->strPlatz; ?></td>
+	<td class="mannschaft"><?= $this->strName; ?></td>
+	<td class="spiele"><?= $this->strSpiele; ?></td>
+	<td class="3031"><?= $this->str3031; ?></td>
+	<td class="32"><?= $this->str32; ?></td>
+	<td class="23"><?= $this->str23; ?></td>
+	<td class="1303"><?= $this->str1303; ?></td>
+	<td class="saetze"><?= $this->strSaetze; ?></td>
+	<td class="baelle"><?= $this->strBaelle; ?></td>
+	<td class="punkte"><?= $this->strPunkte; ?></td>
+</tr>

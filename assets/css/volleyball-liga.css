@@ -1,0 +1,11 @@
+.mod_volleyball_liga_tabelle .heimmannschaft td {
+	font-weight: bold;
+}
+
+.mod_volleyball_liga_tabelle td.mannschaft {
+	text-align: left;
+}
+
+.mod_volleyball_liga_tabelle td {
+	text-align: center;
+}

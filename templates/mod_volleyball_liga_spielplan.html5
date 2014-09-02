@@ -1,0 +1,20 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+	<?php if ($this->headline): ?> 
+		<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+	<?php endif; ?>
+	<table>
+		<thead>
+			<tr>
+				<th class="datum">Datum</th>
+				<th class="zeit">Uhrzeit</th>
+				<th class="heim">Heimmannschaft</th>
+				<th class="gast">Gastmannschaft</th>
+				<th class="halle">Halle</th>
+				<th class="ergebnis">Ergebnis</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?= $this->strHTML; ?>
+		</tbody>
+	</table>
+</div>

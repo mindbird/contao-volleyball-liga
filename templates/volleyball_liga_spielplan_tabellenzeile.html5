@@ -1,0 +1,8 @@
+<tr class="<?= $this-strClass; ?>">
+	<td><?= $this->strDatum; ?></td>
+	<td><?= $this->strUhrzeit; ?></td>
+	<td><?= $this->strHeim; ?></td>
+	<td><?= $this->strGast; ?></td>
+	<td title="<?= $this->strHalleInfo; ?>"><?= $this->strHalle; ?></td>
+	<td><?= $this->strErgebnis; ?></td>
+</tr>
