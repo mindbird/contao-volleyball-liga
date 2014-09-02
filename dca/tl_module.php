@@ -73,7 +73,7 @@ $GLOBALS ['TL_DCA'] ['tl_module'] ['fields'] ['volleyball_liga_mannschaft'] = ar
 );
 class tl_module_volleyball_liga extends Backend {
 	public function getSaison($objDC) {
-		if ($objDC->activeRecord->volleyball_liga_liga) {
+		if ($objDC->activeRecord->volleyball_liga_liga && $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key']) {
 			$strFileUrl = $objDC->activeRecord->volleyball_liga_liga . '/xml/seasons.xhtml?apiKey=' . $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key'];
 			$strContent = file_get_contents ( $strFileUrl );
 			$objXML = new SimpleXMLElement ( $strContent );
@@ -86,7 +86,7 @@ class tl_module_volleyball_liga extends Backend {
 		}
 	}
 	public function getRunde($objDC) {
-		if ($objDC->activeRecord->volleyball_liga_liga) {
+		if ($objDC->activeRecord->volleyball_liga_liga && $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key']) {
 			$strFileUrl = $objDC->activeRecord->volleyball_liga_liga . '/xml/matchSeries.xhtml?apiKey=' . $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key'] . '&seasonId=' . $objDC->activeRecord->volleyball_liga_saison;
 			$strContent = file_get_contents ( $strFileUrl );
 			$objXML = new SimpleXMLElement ( $strContent );
@@ -105,7 +105,7 @@ class tl_module_volleyball_liga extends Backend {
 		}
 	}
 	public function getMannschaft($objDC) {
-		if ($objDC->activeRecord->volleyball_liga_liga) {
+		if ($objDC->activeRecord->volleyball_liga_liga && $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key']) {
 			$strFileUrl = $objDC->activeRecord->volleyball_liga_liga . '/xml/teams.xhtml?apiKey=' . $GLOBALS ['TL_CONFIG'] ['volleyball_liga_key'] . '&matchSeriesId=' . $objDC->activeRecord->volleyball_liga_runde;
 			$strContent = file_get_contents ( $strFileUrl );
 			$objXML = new SimpleXMLElement ( $strContent );

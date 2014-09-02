@@ -9,7 +9,7 @@ class VolleyballLigaCron extends \CronJob {
 			while ($objModule->next()) {
 				$strFileUrl = $objModule->volleyball_liga_liga . 'xml/rankings.xhtml?apiKey=' . $GLOBALS['TL_CONFIG']['volleyball_liga_key'] . '&matchSeriesId=' . $objModule->volleyball_liga_runde;
 				$strContent = file_get_contents ( $strFileUrl );
-				$objFile = new \File('/system/modules/vVolleyball-liga/assets/cache/' . $objModule->volleyball_liga_runde . '-tabelle.xml');
+				$objFile = new \File('/system/modules/volleyball-liga/assets/cache/' . $objModule->volleyball_liga_runde . '-tabelle.xml');
 				$objFile->write($strContent);				
 			}
 		}
