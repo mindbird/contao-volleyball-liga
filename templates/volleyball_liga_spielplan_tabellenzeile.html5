@@ -4,5 +4,5 @@
 	<td><?= $this->strHeim; ?></td>
 	<td><?= $this->strGast; ?></td>
 	<td title="<?= $this->strHalleInfo; ?>"><?= $this->strHalle; ?></td>
-	<td><?= $this->strErgebnis; ?></td>
+	<td title="Dauer: <?= $this->strDauer; ?> Minuten - Zuschauer: <?= $this->strZuschauer; ?>"><?= $this->strErgebnis; ?></td>
 </tr>

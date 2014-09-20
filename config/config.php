@@ -60,7 +60,7 @@ array_insert ( $GLOBALS ['FE_MOD'] ['volleyball_liga'], 1, array (
  * element is rendered. The class "ContentClass1" has to be stored in a file
  * named "ContentClass1.php" in your module folder.
  */
-$GLOBALS['TL_CTE']['includes']['person'] = 'Person\PersonContentElement';
+
 
 /**
  * BACK END FORM FIELDS
