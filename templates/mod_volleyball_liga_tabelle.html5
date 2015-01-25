@@ -8,10 +8,10 @@
 				<th class="platz">Platz</th>
 				<th class="mannschaft">Mannschaft</th>
 				<th class="spiele">Spiele</th>
-				<th class="3031">3:0/3:1</th>
-				<th class="32">3:2</th>
-				<th class="23">2:3</th>
-				<th class="1303">1:3/0:3</th>
+				<th class="spiele_3031">3:0/3:1</th>
+				<th class="spiele_32">3:2</th>
+				<th class="spiele_23">2:3</th>
+				<th class="spiele_1303">1:3/0:3</th>
 				<th class="saetze">Sätze</th>
 				<th class="baelle">Bälle</th>
 				<th class="punkte">Punkte</th>
