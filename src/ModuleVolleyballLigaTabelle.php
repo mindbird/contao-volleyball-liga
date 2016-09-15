@@ -67,6 +67,13 @@ class ModuleVolleyballLigaTabelle extends Module {
                 }
                 $strHTML .= $objTemplate->parse();
             }
+        } else {
+            $strFileUrl = $this->volleyball_liga_liga . 'xml/rankings.xhtml?apiKey=' . $GLOBALS['TL_CONFIG']['volleyball_liga_key'] . '&matchSeriesId=' . $this->volleyball_liga_runde;
+            $strContent = file_get_contents($strFileUrl);
+            if (! preg_match('/\<\!DOCTYPE HTML PUBLIC/', $strContent)) {
+                $objFile = new \File('/system/modules/volleyball-liga/assets/cache/' . $this->volleyball_liga_runde . '-tabelle.xml');
+                $objFile->write($strContent);
+            }
         }
 		$this->Template->strHTML = $strHTML;
 	}
