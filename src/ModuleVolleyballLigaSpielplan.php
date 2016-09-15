@@ -1,7 +1,10 @@
 <?php
+
 namespace VolleyballLiga;
 
-class ModuleVolleyballLigaSpielplan extends \Module
+use Contao\Module;
+
+class ModuleVolleyballLigaSpielplan extends Module
 {
 
     /**

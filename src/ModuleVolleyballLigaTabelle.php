@@ -2,7 +2,9 @@
 
 namespace VolleyballLiga;
 
-class ModuleVolleyballLigaTabelle extends \Module {
+use Contao\Module;
+
+class ModuleVolleyballLigaTabelle extends Module {
 	
 	/**
 	 * Template

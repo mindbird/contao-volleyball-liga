@@ -1,0 +1,33 @@
+{
+  "name": "mindbird/contao-volleyball-liga",
+  "description": "Die aktuellen Daten der Volleyball Bundesligen (1./2./3. Liga)",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "keywords":["contao", "volleyball", "dvl"],
+  "type":"contao-module",
+  "authors": [
+    {
+      "name": "mindbird",
+      "email": "info@mindbird.de"
+    }
+  ],
+  "require": {
+    "contao/core-bundle": "~3.2 || ~4.0",
+    "contao-community-alliance/composer-plugin": "~2.4 || ~3.0"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "contao": "system/modules/volleyball-liga"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "VolleyballLiga\\": "src/"
+    }
+  },
+  "replace": {
+    "contao-legacy/volleyball-liga": "self.version"
+  }
+}
