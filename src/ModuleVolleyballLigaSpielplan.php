@@ -30,15 +30,16 @@ class ModuleVolleyballLigaSpielplan extends Module
     {
         if (TL_MODE == 'BE') {
             $objTemplate = new \BackendTemplate('be_wildcard');
-            
+
             $objTemplate->wildcard = '### VOLLEYBALL LIGA - SPIELPLAN ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
             $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
-            
+
             return $objTemplate->parse();
         }
+
         return parent::generate();
     }
 
@@ -48,26 +49,35 @@ class ModuleVolleyballLigaSpielplan extends Module
     protected function compile()
     {
         $strFile = 'system/modules/volleyball-liga/assets/cache/' . $this->volleyball_liga_runde . '-spielplan.xml';
-        $objXML = new \SimpleXmlElement(file_get_contents($strFile));
-        $strHTML = '';
-        foreach ($objXML->match as $objMatch) {
-            if ($objMatch->team[0]->id == $this->volleyball_liga_mannschaft || $objMatch->team[1]->id == $this->volleyball_liga_mannschaft) {
-                $objTemplate = new \FrontendTemplate($this->strTemplateTabellenzeile);
-                $objTemplate->strDatum = $objMatch->date;
-                $objTemplate->strUhrzeit = $objMatch->time;
-                $objTemplate->strHeim = $objMatch->team[0]->name;
-                $objTemplate->strGast = $objMatch->team[1]->name;
-                $objTemplate->strHalle = $objMatch->location->name;
-                $objTemplate->strHalleInfo = $objMatch->location->name . ',  ' . $objMatch->location->street . ', ' . $objMatch->location->postalCode . ' ' . $objMatch->location->city;
-                if ($objMatch->results) {
-                    $objTemplate->strErgebnis = $objMatch->results->setPoints . ' (' . $this->getSetPoints($objMatch->results->sets) . ')';
-                    $objTemplate->strZuschauer = $objMatch->spectators;
-                    $objTemplate->strDauer = $objMatch->netDuration;
-                    if ($objMatch->results->winner == $this->volleyball_liga_mannschaft) {
-                        $objTemplate->strClass = 'gewonnen';
+        if (file_exists($strFile)) {
+            $objXML = new \SimpleXmlElement(file_get_contents($strFile));
+            $strHTML = '';
+            foreach ($objXML->match as $objMatch) {
+                if ($objMatch->team[0]->id == $this->volleyball_liga_mannschaft || $objMatch->team[1]->id == $this->volleyball_liga_mannschaft) {
+                    $objTemplate = new \FrontendTemplate($this->strTemplateTabellenzeile);
+                    $objTemplate->strDatum = $objMatch->date;
+                    $objTemplate->strUhrzeit = $objMatch->time;
+                    $objTemplate->strHeim = $objMatch->team[0]->name;
+                    $objTemplate->strGast = $objMatch->team[1]->name;
+                    $objTemplate->strHalle = $objMatch->location->name;
+                    $objTemplate->strHalleInfo = $objMatch->location->name . ',  ' . $objMatch->location->street . ', ' . $objMatch->location->postalCode . ' ' . $objMatch->location->city;
+                    if ($objMatch->results) {
+                        $objTemplate->strErgebnis = $objMatch->results->setPoints . ' (' . $this->getSetPoints($objMatch->results->sets) . ')';
+                        $objTemplate->strZuschauer = $objMatch->spectators;
+                        $objTemplate->strDauer = $objMatch->netDuration;
+                        if ($objMatch->results->winner == $this->volleyball_liga_mannschaft) {
+                            $objTemplate->strClass = 'gewonnen';
+                        }
                     }
+                    $strHTML .= $objTemplate->parse();
                 }
-                $strHTML .= $objTemplate->parse();
+            }
+        } else {
+            $strFileUrl = $this->volleyball_liga_liga . 'xml/matches.xhtml?apiKey=' . $GLOBALS['TL_CONFIG']['volleyball_liga_key'] . '&matchSeriesId=' . $this->volleyball_liga_runde;
+            $strContent = file_get_contents($strFileUrl);
+            if (! preg_match('/\<\!DOCTYPE HTML PUBLIC/', $strContent)) {
+                $objFile = new \File('/system/modules/volleyball-liga/assets/cache/' . $this->volleyball_liga_runde . '-spielplan.xml');
+                $objFile->write($strContent);
             }
         }
         $this->Template->strHTML = $strHTML;
@@ -79,6 +89,7 @@ class ModuleVolleyballLigaSpielplan extends Module
         foreach ($objSets->set as $objSet) {
             $arrPoints[] = $objSet->points;
         }
+
         return implode(', ', $arrPoints);
     }
 }

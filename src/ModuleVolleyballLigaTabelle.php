@@ -47,25 +47,27 @@ class ModuleVolleyballLigaTabelle extends Module {
 	 */
 	protected function compile() {
 		$strFile = 'system/modules/volleyball-liga/assets/cache/' . $this->volleyball_liga_runde . '-tabelle.xml';
-		$objXML = new \SimpleXmlElement(file_get_contents($strFile));
-		$strHTML = '';
-		foreach ($objXML->ranking as $objRanking) {
-				$objTemplate = new \FrontendTemplate($this->strTemplateTabellenzeile);
-				$objTemplate->strName = $objRanking->team->name;
-				$objTemplate->strPlatz = $objRanking->place;
-				$objTemplate->strSpiele = $objRanking->matchesPlayed;
-				$objTemplate->str3031 = $objRanking->resultTypes->matchResult[0]->count + $objRanking->resultTypes->matchResult[1]->count;
-				$objTemplate->str32 = $objRanking->resultTypes->matchResult[2]->count;
-				$objTemplate->str23 = $objRanking->resultTypes->matchResult[3]->count;
-				$objTemplate->str1303 = $objRanking->resultTypes->matchResult[4]->count + $objRanking->resultTypes->matchResult[5]->count;
-				$objTemplate->strSaetze = $objRanking->setPoints;
-				$objTemplate->strBaelle = $objRanking->ballPoints;
-				$objTemplate->strPunkte = $objRanking->points;
-				if ($objRanking->team->id == $this->volleyball_liga_mannschaft) {
-					$objTemplate->strClass = 'heimmannschaft';
-				}
-				$strHTML .= $objTemplate->parse();
-		}
+        if (file_exists($strFile)) {
+            $objXML = new \SimpleXmlElement(file_get_contents($strFile));
+            $strHTML = '';
+            foreach ($objXML->ranking as $objRanking) {
+                $objTemplate = new \FrontendTemplate($this->strTemplateTabellenzeile);
+                $objTemplate->strName = $objRanking->team->name;
+                $objTemplate->strPlatz = $objRanking->place;
+                $objTemplate->strSpiele = $objRanking->matchesPlayed;
+                $objTemplate->str3031 = $objRanking->resultTypes->matchResult[0]->count + $objRanking->resultTypes->matchResult[1]->count;
+                $objTemplate->str32 = $objRanking->resultTypes->matchResult[2]->count;
+                $objTemplate->str23 = $objRanking->resultTypes->matchResult[3]->count;
+                $objTemplate->str1303 = $objRanking->resultTypes->matchResult[4]->count + $objRanking->resultTypes->matchResult[5]->count;
+                $objTemplate->strSaetze = $objRanking->setPoints;
+                $objTemplate->strBaelle = $objRanking->ballPoints;
+                $objTemplate->strPunkte = $objRanking->points;
+                if ($objRanking->team->id == $this->volleyball_liga_mannschaft) {
+                    $objTemplate->strClass = 'heimmannschaft';
+                }
+                $strHTML .= $objTemplate->parse();
+            }
+        }
 		$this->Template->strHTML = $strHTML;
 	}
 }
