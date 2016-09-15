@@ -7,8 +7,8 @@
  * your own modules by adding them to the array.
  */
 array_insert ( $GLOBALS ['FE_MOD'] ['volleyball_liga'], 1, array (
-		'volleyball_liga_tabelle' => 'ModuleVolleyballLigaTabelle',
-		'volleyball_liga_spielplan' => 'ModuleVolleyballLigaSpielplan'
+		'volleyball_liga_tabelle' => 'VolleyballLiga\ModuleVolleyballLigaTabelle',
+		'volleyball_liga_spielplan' => 'VolleyballLiga\ModuleVolleyballLigaSpielplan'
 ) );
 
 /**
