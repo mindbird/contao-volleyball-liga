@@ -33,4 +33,4 @@ array_insert ( $GLOBALS ['FE_MOD'] ['volleyball_liga'], 1, array (
  * guarantee an exact execution time. You can replace the command scheduler with
  * a real cron job though.
  */
-$GLOBALS['TL_CRON']['minutely'][] = array('VolleyballLiga\Cron\VolleyballLigaCron', 'run');
+$GLOBALS['TL_CRON']['hourly'][] = array('VolleyballLiga\Cron\VolleyballLigaCron', 'run');
